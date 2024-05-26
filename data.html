@@ -49,46 +49,46 @@
             </div>
         </nav>
         <style>
-            	article ul {
-		margin:0 auto;
-		padding:0;
-		list-style-type:none;
-	}
-	
-
-		article ul li {
-		width: 20%;
-		float: left;
-		background:#000;
-		margin:auto;
-		text-align:center;
-	}
-	article li img {
-		
-		height:100%;
-		width:100%;
-		background:#333;
-		
-	}
-
-		article ul li:last-child {
-		width: 20%;
-		/* float: right; */
-		background:#000;
-		margin:0 0 10px 0;
-		text-align:center;
-	}
+            .network {
+                margin: 10px 0 0 8px;
+                position: absolute;
+                /* opacity: 0; */
+                /* top: 90px; */
+            }
         </style>
-        <div class="container">
-            <article >
+        <div class="container mx-auto max-w-4xl">
+            <!-- <article >
                 <ul>
                  <li><img src="assets/img/mtn.png" /></li> 
                   <li><img src="assets/img/glo.jpeg" /></li>
                   <li><img src="assets/img/airtel.png" /></li>
                   <li><img src="assets/img/9mobile.png" /></li>
-              </article>
-        </div>
+              </article> -->
+
+              <div class="grid grid-cols-4 gap-4 mt-5">
+                <div class="...">
+                    <input type="radio" name="network" class="network" id="mtn">
+                    <img src="assets/img/mtn.png" class="w-28 rounded-lg" alt="MTN" height="50">
+                </div>
+                <div class="...">
+                    <input type="radio" name="network" class="network" id="airtel">
+                    <img src="assets/img/airtel.png" alt="Airtel" class="w-28 rounded-lg" height="50">
+                </div>
+                <div class="...">
+                    <input type="radio" name="network" class="network" id="glo">
+                    <img src="assets/img/glo.jpeg" class="w-28 rounded-lg" alt="Glo" height="50">
+                </div>
+                <div class="...">
+                    <input type="radio" name="network" class="network" id="etisalat">
+                        <img src="assets/img/9mobile.png" class="w-28 rounded-lg" height="80" alt="9mobile">
+                </div>
+                <!-- <div class="col-span-2 ...">04</div>
+                <div class="...">06</div>
+                <div class="col-span-2 ...">07</div> -->
+              </div>
+              
         <h3>Buy Data</h3>
+        </div>
         <div class="container mx-auto">
             <form class="max-w-4xl mx-auto mt-8 p-4">
                 <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Network</label>
@@ -100,7 +100,7 @@
                     <option value="9mobile">9Mobile</option>
                 </select>
                 <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Type</label>
-                <select id="small" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500">
+                <select id="small" onchange="getdataType()" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500">
                     <option selected style="display: none;">Data Type</option>
                     <option value="mtn">MTN</option>
                     
@@ -123,6 +123,17 @@
                     <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount to pay</label>
                     <input type="amount" id="amount" class="bg-gray-950 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Amount to pay" required readonly/>
                 </div>
+                <div class="mb-6">
+                    <label for="coupon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apply Coupon</label>
+                    <input type="coupon" id="coupon" class="bg-gray-950 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Coupon"/>
+                </div>
+                <button disabled type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
+                    <svg style="display: none;" aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                    </svg>
+                    <span>Proceedd to Pay</span> <span style="display: none;">Loading...</span>
+                    </button>
             </form>
         </div>
 
